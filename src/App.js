@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import './App.css';
 import Canvas from "./components/Canvas";
+import Output from "./components/Output";
 
 
 class App extends React.Component {
@@ -12,18 +13,18 @@ class App extends React.Component {
     };
   }
 
-
-
   render() {
     return (
-      <div className="App" style={{ height: "100%" }}>
+      <div className="app" >
         <h1>How to solve it?</h1>
-        <div>
-          Write your number:
-        </div>
-       <div>
-         <Canvas />
-       </div>
+       <div className="flex">
+          <div>
+            <Canvas />
+          </div>
+          <div>
+            <Output />
+          </div>
+          </div>
       </div>
     );
   }
