@@ -20,14 +20,7 @@ class App extends React.Component {
         "kgrade": "5",
         "kunyomi_ja": "わた",
         "kunyomi": "wata",
-        "onyomi_ja": "メン",
-        "onyomi": "men",
-        "radical": "",
-        "rad_order": "158",
-        "rad_stroke": "いとへん",
-        "rad_name": "itohen",
-        "rad_meaning": null,
-        "rad_position": "hen"
+    
       },{
         "id": "63",
         "kanji": "鋼",
@@ -38,14 +31,7 @@ class App extends React.Component {
         "kgrade": "6",
         "kunyomi_ja": "はがね",
         "kunyomi": "hagane",
-        "onyomi_ja": "コウ",
-        "onyomi": "kou",
-        "radical": "",
-        "rad_order": "206",
-        "rad_stroke": "かねへん",
-        "rad_name": "kanehen",
-        "rad_meaning": null,
-        "rad_position": "hen"
+      
       },
       {
         "id": "66",
@@ -57,14 +43,7 @@ class App extends React.Component {
         "kgrade": "6",
         "kunyomi_ja": "すな",
         "kunyomi": "suna",
-        "onyomi_ja": "サ、シャ",
-        "onyomi": "sa, sha",
-        "radical": "",
-        "rad_order": "143",
-        "rad_stroke": "いしへん",
-        "rad_name": "ishihen",
-        "rad_meaning": null,
-        "rad_position": "hen"
+      
       },{
         "id": "115",
         "kanji": "糖",
@@ -75,14 +54,7 @@ class App extends React.Component {
         "kgrade": "6",
         "kunyomi_ja": "",
         "kunyomi": "n/a",
-        "onyomi_ja": "トウ",
-        "onyomi": "tou",
-        "radical": "",
-        "rad_order": "156",
-        "rad_stroke": "こめへん",
-        "rad_name": "komehen",
-        "rad_meaning": null,
-        "rad_position": "hen"
+       
       }, {
         "id": "105",
         "kanji": "暖",
@@ -93,14 +65,7 @@ class App extends React.Component {
         "kgrade": "6",
         "kunyomi_ja": "あたた、あたたかい、あたたまる、あたためる",
         "kunyomi": "atata, atatakai, atatamaru, atatameru",
-        "onyomi_ja": "ダン",
-        "onyomi": "dan",
-        "radical": "",
-        "rad_order": "93",
-        "rad_stroke": "ひへん",
-        "rad_name": "hihen",
-        "rad_meaning": null,
-        "rad_position": "hen"
+      
       },
       {
         "id": "49",
@@ -112,14 +77,7 @@ class App extends React.Component {
         "kgrade": "6",
         "kunyomi_ja": "あぶ、あや、あぶない、あやうい、あやぶむ、あやうく",
         "kunyomi": "abu, aya, abunai, ayaui, ayabumu, ayauku",
-        "onyomi_ja": "キ",
-        "onyomi": "ki",
-        "radical": "⼙",
-        "rad_order": "30",
-        "rad_stroke": "ふしづくり",
-        "rad_name": "fushizukuri",
-        "rad_meaning": null,
-        "rad_position": "tsukuri"
+     
       },
       {
         "id": "80",
@@ -131,14 +89,7 @@ class App extends React.Component {
         "kgrade": "3",
         "kunyomi_ja": "ひら、ひらく、あ、あく、あける",
         "kunyomi": "hira, hiraku, a, aku, akeru",
-        "onyomi_ja": "カイ",
-        "onyomi": "kai",
-        "radical": "⾨",
-        "rad_order": "208",
-        "rad_stroke": "もんがまえ",
-        "rad_name": "mongamae",
-        "rad_meaning": null,
-        "rad_position": "kamae, mongamae"
+       
       }, {
         "id": "136",
         "kanji": "紙",
@@ -149,14 +100,7 @@ class App extends React.Component {
         "kgrade": "2",
         "kunyomi_ja": "かみ",
         "kunyomi": "kami",
-        "onyomi_ja": "シ",
-        "onyomi": "shi",
-        "radical": "",
-        "rad_order": "158",
-        "rad_stroke": "いとへん",
-        "rad_name": "itohen",
-        "rad_meaning": null,
-        "rad_position": "hen"
+     
       },
       {
         "id": "158",
@@ -168,14 +112,7 @@ class App extends React.Component {
         "kgrade": "2",
         "kunyomi_ja": "あき",
         "kunyomi": "aki",
-        "onyomi_ja": "シュウ",
-        "onyomi": "shuu",
-        "radical": "⽲",
-        "rad_order": "145",
-        "rad_stroke": "のぎへん",
-        "rad_name": "nogihen",
-        "rad_meaning": null,
-        "rad_position": "hen"
+      
       },
       {
         "id": "91",
@@ -187,14 +124,7 @@ class App extends React.Component {
         "kgrade": "6",
         "kunyomi_ja": "と、とじる、とざす、し、しめる、しまる",
         "kunyomi": "to, tojiru, tozasu, shi, shimeru, shimaru",
-        "onyomi_ja": "ヘイ",
-        "onyomi": "hei",
-        "radical": "⾨",
-        "rad_order": "208",
-        "rad_stroke": "もんがまえ",
-        "rad_name": "mongamae",
-        "rad_meaning": null,
-        "rad_position": "kamae, mongamae"
+      
       },{
         "id": "102",
         "kanji": "友",
@@ -205,14 +135,7 @@ class App extends React.Component {
         "kgrade": "2",
         "kunyomi_ja": "とも",
         "kunyomi": "tomo",
-        "onyomi_ja": "ユウ",
-        "onyomi": "yuu",
-        "radical": "⼜",
-        "rad_order": "33",
-        "rad_stroke": "また",
-        "rad_name": "mata",
-        "rad_meaning": null,
-        "rad_position": ""
+     
       },{
         "id": "117",
         "kanji": "脳",
@@ -223,14 +146,7 @@ class App extends React.Component {
         "kgrade": "6",
         "kunyomi_ja": "",
         "kunyomi": "n/a",
-        "onyomi_ja": "ノウ",
-        "onyomi": "nou",
-        "radical": "",
-        "rad_order": "96",
-        "rad_stroke": "にくづき",
-        "rad_name": "nikuzuki",
-        "rad_meaning": null,
-        "rad_position": ""
+    
       },{
         "id": "1094",
         "kanji": "池",
@@ -241,14 +157,7 @@ class App extends React.Component {
         "kgrade": "2",
         "kunyomi_ja": "いけ",
         "kunyomi": "ike",
-        "onyomi_ja": "チ",
-        "onyomi": "chi",
-        "radical": "⺡",
-        "rad_order": "76",
-        "rad_stroke": "さんずい",
-        "rad_name": "sanzui",
-        "rad_meaning": null,
-        "rad_position": "hen"
+    
       },{
         "id": "138",
         "kanji": "卵",
@@ -259,14 +168,7 @@ class App extends React.Component {
         "kgrade": "6",
         "kunyomi_ja": "たまご",
         "kunyomi": "tamago",
-        "onyomi_ja": "ラン",
-        "onyomi": "ran",
-        "radical": "⼙",
-        "rad_order": "30",
-        "rad_stroke": "ふしづくり",
-        "rad_name": "fushizukuri",
-        "rad_meaning": null,
-        "rad_position": "tsukuri"
+   
       }
     ],
       Nextword: {
@@ -297,11 +199,11 @@ class App extends React.Component {
   async componentDidMount() {
   }
 
-  selectWord = (e) => {
-    const wordsArr = ["Add word", "cotton", "steel", "sand", "sugar", "warm", "dangerous", "open", "paper", "autumn", "close", "friend", "brain", "pond", "egg"];
-    console.log(wordsArr[e.target.value]);
+  // selectWord = (e) => {
+  //   const wordsArr = ["Add word", "cotton", "steel", "sand", "sugar", "warm", "dangerous", "open", "paper", "autumn", "close", "friend", "brain", "pond", "egg"];
+  //   console.log(wordsArr[e.target.value]);
 
-  };
+  // };
 
   study = () => {
     console.log("study button clicked");
@@ -309,6 +211,7 @@ class App extends React.Component {
   }
   
   lowestRanking = () => {
+    console.log("entredfg");
     const rankings = [];
     this.state.allWords.map( (x) =>{
       if (typeof x === "number") {
@@ -316,11 +219,15 @@ class App extends React.Component {
     });
     console.log("RANKNGS", rankings);
     const minimum = Math.min(rankings);
+    let brake = 0;
     this.state.allWords.map( (x) =>{
-      if (x.ranking === minimum) {
+      if (x.ranking === minimum && brake === 0) {
+        brake++;
         this.setState({ Nextword: x});
+        console.log(this.state.Nextword);
       }
     });
+    console.log(JSON.stringify(rankings));
   }
 
   close = () => {
@@ -343,7 +250,7 @@ class App extends React.Component {
       <div className="app" >
         <h1>How to solve it?</h1>
         <div>
-          <select onChange={this.selectWord} >
+          {/* <select onChange={this.selectWord} >
             <option value="0">"Add word"</option>
             <option value="1">"cotton"</option>
             <option value="2">"steel"</option>
@@ -359,7 +266,7 @@ class App extends React.Component {
             <option value="12">"brain"</option>
             <option value="13">"pond"</option>
             <option value="14">"egg"</option>
-          </select>
+          </select> */}
           <button onClick={this.study} >study</button>
           <button onClick={this.close} >close</button>
         </div>

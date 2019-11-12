@@ -66,7 +66,7 @@ class ShowWord extends React.Component {
   }
 
   showNextWord = () => {
-    //console.log(this.state.nextWord);
+    console.log(this.props.nextWord);
   
       
       
