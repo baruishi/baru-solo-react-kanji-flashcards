@@ -23,7 +23,7 @@ var knex = require('knex')({
     host : '127.0.0.1',
     user : 'postgres',
     password : "",
-    database : 'kanji'
+    database : 'radicals'
   }
 });
 
@@ -56,24 +56,23 @@ var knex = require('knex')({
       knex('radicals')
         .insert({ 
           kanji: parsedData[row][0], 
-          ranking: parsedData[row][1],
-          kname: parsedData[row][2], 
-          kstroke: parsedData[row][3], 
-          kmeaning: parsedData[row][4], 
-          kgrade: parsedData[row][5], 
-          kunyomi_ja: parsedData[row][6], 
-          kunyomi: parsedData[row][7], 
-          onyomi_ja: parsedData[row][8], 
-          onyomi: parsedData[row][9], 
-          examples: parsedData[row][10], 
-          radical: parsedData[row][11], 
-          rad_order: parsedData[row][12], 
-          rad_stroke: parsedData[row][13], 
-          rad_name_ja: parsedData[row][14], 
-          rad_name: parsedData[row][15], 
-          rad_meaning: parsedData[row][16], 
-          rad_position_ja: parsedData[row][17], 
-          rad_position: parsedData[row][18],
+          ranking: "x",
+          kname: parsedData[row][1], 
+          kstroke: parsedData[row][2], 
+          kmeaning: parsedData[row][3], 
+          kgrade: parsedData[row][4], 
+          kunyomi_ja: parsedData[row][5], 
+          kunyomi: parsedData[row][6], 
+          onyomi_ja: parsedData[row][7], 
+          onyomi: parsedData[row][8], 
+          examples: parsedData[row][9], 
+          radical: parsedData[row][10], 
+          rad_order: parsedData[row][11], 
+          rad_stroke: parsedData[row][12], 
+          rad_name_ja: parsedData[row][13], 
+          rad_name: parsedData[row][14], 
+          rad_meaning: parsedData[row][15], 
+          rad_position: parsedData[row][17],
         })
         .then(() => knex('radicals').select());
     };

@@ -2,7 +2,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
-const db = require("./knex.js");
+const db = require("knex.js");
 //const getall = require("./getAll");
 const bodyParser = require("body-parser");
 const app = require("app");
@@ -45,33 +45,33 @@ app.get("/api/radicals", async (req, res) => {
 });
 
 //get one radical in english (kmeaning)
-app.get("/api/radical/:kmeaning", async (req, res) => {
-  try {
-    const { kmeaning } = req.params;
-    const radicals = await db("radicals")
-    const { kmeaning } = req.params;
-    .where({ city })
-      .select();
-    res.send(radicals);
-  } catch (err) {
-    console.error("Error loading radicals!", err);
-    res.sendStatus(500);
-  }
-});
+// app.get("/api/radical/:kmeaning", async (req, res) => {
+//   try {
+//     const { kmeaning } = req.params;
+//     const radicals = await db("radicals")
+//     const { kmeaning } = req.params;
+//     .where({ city })
+//       .select();
+//     res.send(radicals);
+//   } catch (err) {
+//     console.error("Error loading radicals!", err);
+//     res.sendStatus(500);
+//   }
+// });
 
-app.get("/api/radical/:kmeaning", async (req, res) => {
-  try {
-    const { kmeaning } = req.params;
-    const singleRadical = await db("radicals")
-    const { kmeaning } = req.params;
-    .where({ city })
-      .select();
-    res.send(radicals);
-  } catch (err) {
-    console.error("Error loading radicals!", err);
-    res.sendStatus(500);
-  }
-});
+// app.get("/api/radical/:kmeaning", async (req, res) => {
+//   try {
+//     const { kmeaning } = req.params;
+//     const singleRadical = await db("radicals")
+//     const { kmeaning } = req.params;
+//     .where({ city })
+//       .select();
+//     res.send(radicals);
+//   } catch (err) {
+//     console.error("Error loading radicals!", err);
+//     res.sendStatus(500);
+//   }
+// });
 
 
 // Always return the main index.html, so react-router render the route in the client

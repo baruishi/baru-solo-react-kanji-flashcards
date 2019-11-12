@@ -21,31 +21,6 @@ const createDbModels = (knex = createDefaultKnexClient()) => {
   };
 };
 
-// exports.up = function(knex) {
-//   return knex.schema
-//     .createTable("kanjiTable", (table) => {
-//       table.increments("id").index();
-//       table.string("kanji");
-//       table.string("kname");
-//       table.integer("kstroke");
-//       table.string("kmeaning");
-//       table.integer("kgrade");
-//       table.string("kunyomi_ja");
-//       table.string("kunyomi");
-//       table.string("onyomi_ja");
-//       table.string("onyomi");
-//       table.string(" examples");
-//       table.string("radical");
-//       table.integer("rad_order");
-//       table.integer("rad_stroke");
-//       table.string("rad_name_ja");
-//       table.string("rad_name");
-//       table.string("rad_meaning");
-//       table.string("rad_position_ja");
-//       table.string("rad_position");
-//     })
-// };
-
   // kanji: '飼',
   // kname: 'shi-ka(u)',
   // kstroke: '13',
