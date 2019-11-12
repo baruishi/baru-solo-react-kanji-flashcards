@@ -17,7 +17,7 @@ const schema = buildSchema(`
   type radicals {
     id: ID!
     kanji: String!
-    ranking: String!
+    ranking: String
     kname: String!
     kstroke: String!
     kmeaning: String!
@@ -33,8 +33,8 @@ const schema = buildSchema(`
     rad_name_ja: String!
     rad_name: String!
     rad_meaning: String!
-    rad_position_ja: String!
-    rad_position: String!
+    rad_position_ja: String
+    rad_position: String
   }
 
   type oneRadical {
@@ -62,8 +62,8 @@ const schema = buildSchema(`
     
 
   type Query {
-    radicals: [radicals]
-    oneRadical(kmeaning: String!): oneRadical
+    radicals: [radicals],
+    withRanking: [radicals]
     
   }
   type Mutation {
@@ -81,15 +81,13 @@ const root = {
       });
   },
 
-  oneRadical: input => {
-    const selectedRadical = input.kmeaning;
+  withRanking: () => {
     return knex
       .select("*")
       .from("radicals")
-      .where({ kmeaning: selectedRadical })
+      .whereNot('ranking', "0")
       .then(radicals => {
-        const radical = radicals.pop();
-        return radical;
+        return radicals;
       });
   },
 
@@ -98,7 +96,7 @@ const root = {
     const selectedRadical = input.kmeaning;
     const newRanking = input.ranking;
     return knex(`radicals`)
-      .where({ ranking: selectedRadical })
+      .where({ kmeaning: selectedRadical })
       .update({ ranking: newRanking })
       .then(() => {
         return `${selectedRadical} updated to ${newRanking}`;

@@ -56,7 +56,7 @@ var knex = require('knex')({
       knex('radicals')
         .insert({ 
           kanji: parsedData[row][0], 
-          ranking: "x",
+          ranking: "0",
           kname: parsedData[row][1], 
           kstroke: parsedData[row][2], 
           kmeaning: parsedData[row][3], 
