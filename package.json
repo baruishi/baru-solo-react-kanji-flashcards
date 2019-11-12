@@ -3,18 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "http-proxy-middleware": "^0.20.0",
+    "knex": "^0.20.1",
+    "morgan": "^1.9.1",
+    "papaparse": "^5.1.0",
+    "path": "^0.12.7",
+    "pg": "^7.12.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "sqlite3": "^4.1.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server",
     "server": "nodemon server.js",
     "build": "react-scripts build",
     "hack": "react-scripts start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "migrate": "knex migrate:latest --knexfile db/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile db/knexfile.js "
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,7 +45,6 @@
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }
-
-

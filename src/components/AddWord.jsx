@@ -2,8 +2,9 @@ import React from 'react';
 import '../App.css';
 
 
+//class for finding the word, choosing it and adding the data to "allWords"
 
-class Output extends React.Component {
+class AddWord extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,15 +16,14 @@ class Output extends React.Component {
   render() {
     return (
       <div className="Canvas" >
-        Output
-        dgdfghdfgh
-        fdghdfghdfgh
-        dfghdfghdfgh
-        dfghfdghfgh
+        Write your number:
+        sdfgfdg
+        dfghdfgh
+        dfgh
        
       </div>
     );
   }
 }
 
-export default Output;
+export default AddWord;
