@@ -248,7 +248,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app" >
-        <h1>How to solve it?</h1>
+        <h1>Bar-anki</h1>
         <div>
           {/* <select onChange={this.selectWord} >
             <option value="0">"Add word"</option>

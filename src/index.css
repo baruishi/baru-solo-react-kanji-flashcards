@@ -1,5 +1,5 @@
 body {
-
+  text-size-adjust: 30%;
   width: 90%;
   height: 80%;
   background-color: gray;
@@ -21,8 +21,8 @@ body {
 
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  border: 2px solid red;
+  justify-content: left;
+  /* border: 2px solid red; */
 }
 .Canvas {
   border: 2px solid blue;
