@@ -5,7 +5,7 @@ module.exports = {
     port: process.env.DB_PORT || 5432,
     database: process.env.DB_NAME || "radicals",
     user: process.env.DB_USERNAME || "postgres",
-    password: process.env.DB_PASSWORD || "",
+    password: process.env.DB_PASSWORD || "postgres",
   },
   pool: {
     min: 2,

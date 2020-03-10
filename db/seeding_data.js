@@ -22,7 +22,7 @@ var knex = require('knex')({
   connection: {
     host : '127.0.0.1',
     user : 'postgres',
-    password : "",
+    password : "postgres",
     database : 'radicals'
   }
 });
