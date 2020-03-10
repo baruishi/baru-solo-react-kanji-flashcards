@@ -3,6 +3,7 @@ import '../App.css';
 
 
 //class for finding the word, choosing it and adding the data to "allWords"
+// fgsdfgd
 
 class AddWord extends React.Component {
   constructor(props) {
