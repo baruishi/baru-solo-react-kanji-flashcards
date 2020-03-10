@@ -63,7 +63,8 @@ const schema = buildSchema(`
 
   type Query {
     radicals: [radicals],
-    withRanking: [radicals]
+    withRanking: [radicals],
+    showFirstRadical: [radicals]
     
   }
   type Mutation {
@@ -76,6 +77,16 @@ const root = {
     return knex
       .select("*")
       .from("radicals")
+      .then(radicals => {
+        return radicals;
+      });
+  },
+  showFirstRadical: () => {
+    radicalId = "1";
+    return knex
+      .select("*")
+      .from("radicals")
+      .where( {id: radicalId})
       .then(radicals => {
         return radicals;
       });
@@ -112,7 +123,7 @@ app.use(
     graphiql: true
   })
 );
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Running a GraphQL API server at localhost:${PORT}/graphql`);
 });

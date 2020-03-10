@@ -21,6 +21,154 @@ class App extends React.Component {
         "kunyomi_ja": "わた",
         "kunyomi": "wata",
     
+      },{
+        "id": "63",
+        "kanji": "鋼",
+        "ranking": 0,
+        "kname": "hagane",
+        "kstroke": "16",
+        "kmeaning": "steel",
+        "kgrade": "6",
+        "kunyomi_ja": "はがね",
+        "kunyomi": "hagane",
+      
+      },
+      {
+        "id": "66",
+        "kanji": "砂",
+        "ranking": 0,
+        "kname": "suna",
+        "kstroke": "9",
+        "kmeaning": "sand",
+        "kgrade": "6",
+        "kunyomi_ja": "すな",
+        "kunyomi": "suna",
+      
+      },{
+        "id": "115",
+        "kanji": "糖",
+        "ranking": 0,
+        "kname": "(budou)tou",
+        "kstroke": "16",
+        "kmeaning": "sugar",
+        "kgrade": "6",
+        "kunyomi_ja": "",
+        "kunyomi": "n/a",
+       
+      }, {
+        "id": "105",
+        "kanji": "暖",
+        "ranking": 0,
+        "kname": "dan-atata(maru)",
+        "kstroke": "13",
+        "kmeaning": "warm",
+        "kgrade": "6",
+        "kunyomi_ja": "あたた、あたたかい、あたたまる、あたためる",
+        "kunyomi": "atata, atatakai, atatamaru, atatameru",
+      
+      },
+      {
+        "id": "49",
+        "kanji": "危",
+        "ranking": 0,
+        "kname": "abu(nai)",
+        "kstroke": "6",
+        "kmeaning": "dangerous",
+        "kgrade": "6",
+        "kunyomi_ja": "あぶ、あや、あぶない、あやうい、あやぶむ、あやうく",
+        "kunyomi": "abu, aya, abunai, ayaui, ayabumu, ayauku",
+     
+      },
+      {
+        "id": "80",
+        "kanji": "開",
+        "ranking": 0,
+        "kname": "kai-hira(ku)",
+        "kstroke": "12",
+        "kmeaning": "open",
+        "kgrade": "3",
+        "kunyomi_ja": "ひら、ひらく、あ、あく、あける",
+        "kunyomi": "hira, hiraku, a, aku, akeru",
+       
+      }, {
+        "id": "136",
+        "kanji": "紙",
+        "ranking": 0,
+        "kname": "shi-kami",
+        "kstroke": "10",
+        "kmeaning": "paper",
+        "kgrade": "2",
+        "kunyomi_ja": "かみ",
+        "kunyomi": "kami",
+     
+      },
+      {
+        "id": "158",
+        "kanji": "秋",
+        "ranking": 0,
+        "kname": "aki",
+        "kstroke": "9",
+        "kmeaning": "autumn",
+        "kgrade": "2",
+        "kunyomi_ja": "あき",
+        "kunyomi": "aki",
+      
+      },
+      {
+        "id": "91",
+        "kanji": "閉",
+        "ranking": 0,
+        "kname": "hei-toji(ru)",
+        "kstroke": "11",
+        "kmeaning": "close",
+        "kgrade": "6",
+        "kunyomi_ja": "と、とじる、とざす、し、しめる、しまる",
+        "kunyomi": "to, tojiru, tozasu, shi, shimeru, shimaru",
+      
+      },{
+        "id": "102",
+        "kanji": "友",
+        "ranking": 0,
+        "kname": "yuu-tomo",
+        "kstroke": "4",
+        "kmeaning": "friend",
+        "kgrade": "2",
+        "kunyomi_ja": "とも",
+        "kunyomi": "tomo",
+     
+      },{
+        "id": "117",
+        "kanji": "脳",
+        "ranking": 0,
+        "kname": "(zu)nou",
+        "kstroke": "11",
+        "kmeaning": "brain",
+        "kgrade": "6",
+        "kunyomi_ja": "",
+        "kunyomi": "n/a",
+    
+      },{
+        "id": "1094",
+        "kanji": "池",
+        "ranking": 0,
+        "kname": "ike",
+        "kstroke": "6",
+        "kmeaning": "pond",
+        "kgrade": "2",
+        "kunyomi_ja": "いけ",
+        "kunyomi": "ike",
+    
+      },{
+        "id": "138",
+        "kanji": "卵",
+        "ranking": 0,
+        "kname": "tamago",
+        "kstroke": "7",
+        "kmeaning": "egg",
+        "kgrade": "6",
+        "kunyomi_ja": "たまご",
+        "kunyomi": "tamago",
+   
       }
     ],
       Nextword: {
@@ -50,7 +198,7 @@ class App extends React.Component {
 
   async componentDidMount() {
     Axios({
-      url:'/graphql',
+      url:'/graphq',
       method: 'post',
       data: {
         query: `
