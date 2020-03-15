@@ -5,9 +5,13 @@ This was created during my time as a student at [Code Chrysalis](https://www.cod
 
 It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+I want to continue to develop this app to deepen my knowledge and to create a useful tool for myself. 
+
 <br>
 
 The idea for that app started from my own personal need to customise the flashcards I use to learn Japanese vocabulary.
+I want to play around with more complex ways of defining the confidence of knowing a specific word.
+The goal is to make it an android app and use more advanced back-end 
 
 
 <br>
