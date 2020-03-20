@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 //import AddWord from "./components/AddWord";
 import ShowWord from "./components/ShowWord";
@@ -10,41 +10,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allWords: [ {
-        "id": "33",
-        "kanji": "綿",
-        "ranking": 0,
-        "kname": "men-wata",
-        "kstroke": "14",
-        "kmeaning": "cotton",
-        "kgrade": "5",
-        "kunyomi_ja": "わた",
-        "kunyomi": "wata",
-    
+      currentWord: {
+        id: "",
+        kname: "",
+        onyomi_ja: "",
       }
-    ],
-      Nextword: {
-        "id": "138",
-        "kanji": "卵",
-        "ranking": 0,
-        "kname": "tamago",
-        "kstroke": "7",
-        "kmeaning": "egg",
-        "kgrade": "6",
-        "kunyomi_ja": "たまご",
-        "kunyomi": "tamago",
-        "onyomi_ja": "ラン",
-        "onyomi": "ran",
-        "radical": "⼙",
-        "rad_order": "30",
-        "rad_stroke": "ふしづくり",
-        "rad_name": "fushizukuri",
-        "rad_meaning": null,
-        "rad_position": "tsukuri"
-      },
-      NextwordIndex: 0,
-      viewType: "initial",
-      wantToStudy: undefined,
     };
   }
 
@@ -58,24 +28,21 @@ class App extends React.Component {
           id
           kname
           onyomi_ja
-          
         }}
         `
       }
     })
-    .then((result) => console.log(result.data.data.showFirstRadical));
-
+    .then((result) => {
+      console.log(result.data.data.showFirstRadical);
+      this.setState({currentWord: result.data.data.showFirstRadical[0]});
+      console.log("state", this.state.currentWord);
+    });
   }
 
-  // selectWord = (e) => {
-  //   const wordsArr = ["Add word", "cotton", "steel", "sand", "sugar", "warm", "dangerous", "open", "paper", "autumn", "close", "friend", "brain", "pond", "egg"];
-  //   console.log(wordsArr[e.target.value]);
-
-  // };
 
   study = () => {
     console.log("study button clicked");
-    this.setState({wantToStudy: "study"});
+    console.log(this.state.currentWord);
   }
   
   lowestRanking = () => {
@@ -100,7 +67,8 @@ class App extends React.Component {
 
   close = () => {
     console.log("close button clicked");
-    this.setState({wantToStudy: undefined})
+    console.log(this.state.currentWord);
+    this.forceUpdate();
   }
 
   handleConfidenceChange = (e) => {
@@ -117,24 +85,12 @@ class App extends React.Component {
     return (
       <div className="app" >
         <h1>Bar-anki</h1>
+        {this.state.currentWord.id}<br/>
+        {this.state.currentWord.kname} <br/>
+        {this.state.currentWord.onyomi_ja} <br/>
+ 
         <div>
-          {/* <select onChange={this.selectWord} >
-            <option value="0">"Add word"</option>
-            <option value="1">"cotton"</option>
-            <option value="2">"steel"</option>
-            <option value="3">"sand"</option>
-            <option value="4">"sugar"</option>
-            <option value="5">"warm"</option>
-            <option value="6">"dangerous"</option>
-            <option value="7">"open"</option>
-            <option value="8">"paper"</option>
-            <option value="9">"autumn"</option>
-            <option value="10">"close"</option>
-            <option value="11">"friend"</option>
-            <option value="12">"brain"</option>
-            <option value="13">"pond"</option>
-            <option value="14">"egg"</option>
-          </select> */}
+          
           <button onClick={this.study} >study</button>
           <button onClick={this.close} >close</button>
         </div>

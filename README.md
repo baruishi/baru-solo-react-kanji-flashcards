@@ -9,9 +9,10 @@ I want to continue to develop this app to deepen my knowledge and to create a us
 
 <br>
 
-The idea for that app started from my own personal need to customise the flashcards I use to learn Japanese vocabulary.
-I want to play around with more complex ways of defining the confidence of knowing a specific word.
-The goal is to make it an android app and use more advanced back-end 
+The idea for the app started from my own personal need to customise the flashcards I use to learn Japanese vocabulary.
+I want to have more complex ways of defining the confidence of knowing a specific word.
+The goal is to make it an android app and use more advanced back-end.
+At this moment, the looks priorities the main functionality and eyestrain.
 
 
 <br>
@@ -35,13 +36,10 @@ The front end will become interactive and fully functional.
 ```
 
 yarn install
-
 yarn migrate
-
 cd db
-
 node seeding_data.js
-
+yarn serve
 yarn start
 
 ```
@@ -86,10 +84,11 @@ developed by: _baruishi_
 
 In the project directory, you can run:
 
+### `yarn serve`
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+yarn start - runs a GraphQL API server at localhost:3000/graphql<br />
+yarn serve - runs the app in the development mode.<br />
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
