@@ -1,43 +1,36 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 //import AddWord from "./components/AddWord";
-import ShowWord from "./components/ShowWord";
-import { concat } from 'rxjs';
+//import ShowWord from "./components/ShowWord";
 import Axios from 'axios';
 
 
 const App = () => {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     currentWord: {
-  //       id: "",
-  //       kname: "",
-  //       onyomi_ja: "",
-  //     }
-  //   };
-  // }
-
-  // async componentDidMount() {
-  //   Axios({
-  //     url:'/graphql',
-  //     method: 'post',
-  //     data: {
-  //       query: `
-  //       {showFirstRadical {
-  //         id
-  //         kname
-  //         onyomi_ja
-  //       }}
-  //       `
-  //     }
-  //   })
-  //   .then((result) => {
-  //     console.log(result.data.data.showFirstRadical);
-  //     this.setState({currentWord: result.data.data.showFirstRadical[0]});
-  //     console.log("state", this.state.currentWord);
-  //   });
-  // }
+  const [kanji, setKanji] = useState('xxxxxxxxxxx');
+  const study = () => {
+    console.log("study button")
+    Axios({
+          url:'/graphql',
+          method: 'post',
+          data: {
+            query: `
+            {showFirstRadical {
+              id
+              kname
+              onyomi_ja
+            }}
+            `
+          }
+        })
+        .then((result) => {
+          console.log(result.data.data.showFirstRadical[0]);
+          setKanji(result.data.data.showFirstRadical[0].onyomi_ja);
+          //this.setState({currentWord: result.data.data.showFirstRadical[0]});
+          //console.log("state", this.state.currentWord);
+          console.log(kanji);
+        });
+        
+  }
 
 
   // study = () => {
@@ -85,6 +78,13 @@ const App = () => {
     return (
       <div className="app" >
         <h1>Bar-anki</h1>
+        &nbsp;
+        {kanji}
+        &nbsp;
+        <button onClick={study}>
+          study
+
+        </button>
         {/* {this.state.currentWord.id}<br/>
         {this.state.currentWord.kname} <br/>
         {this.state.currentWord.onyomi_ja} <br/>
