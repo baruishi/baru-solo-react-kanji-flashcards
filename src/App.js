@@ -1,114 +1,91 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-//import AddWord from "./components/AddWord";
-//import ShowWord from "./components/ShowWord";
-import Axios from 'axios';
+import Study from "./components/study";
+import Search from "./components/search";
+import Modify from "./components/modify";
+import DefaultElement from "./components/default";
 
+
+
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 const App = () => {
-  const [kanji, setKanji] = useState("");
-  const [kanji2, setKanji2] = useState("");
-  const study = () => {
-    console.log("study button");
-    Axios({
-          url:'/graphql',
-          method: 'post',
-          data: {
-            query: `
-            {showFirstRadical {
-              id
-              kanji
-              ranking
-              kname
-              kstroke
-              kmeaning
-              kgrade
-              kunyomi_ja
-              kunyomi
-              onyomi_ja
-              onyomi
-              examples
-              radical
-              rad_order
-              rad_stroke:
-              rad_name_ja
-              rad_name
-              rad_meaning:
-              rad_position_ja
-              rad_position
-            }}
-            `
-          }
-        })
-        .then((result) => {
-          //console.log(result.data.data.showFirstRadical[0]);
-          setKanji(result.data.data.showFirstRadical[0]);
-          //this.setState({currentWord: result.data.data.showFirstRadical[0]});
-          //console.log("state", this.state.currentWord);
-          console.log(kanji);
-          //console.log(JSON.parse(result.data.data.showFirstRadical[0].examples));
-          //kanji.examples =  JSON.parse(result.data.data.showFirstRadical[0].examples);
-        })    
-           
+  const classes = useStyles();
+
+  const [contentType, setContentType] = useState("default")
+  
+  const defaultButton = () => {
+    console.log("studyButton");
+    setContentType("default");
   }
 
-  const again = () => {
-    
-    kanji.kmeaning = "new word";
-    console.log(kanji);
+  const studyButton = () => {
+    console.log("studyButton");
+    setContentType("study");
+  }
+  const searchButton = () => {
+    console.log("searchButton");
+    setContentType("search");
+
+  }
+  const modifyButton = () => {
+    console.log("modifyButton");
+    setContentType("modify");
+
   }
 
   useEffect( () => {
-    console.log("Use effect - kanji");
-    if (kanji === "") {return} 
-    console.log(kanji.examples);
-    //kanji.examples = JSON.parse(kanji.examples);
-    console.log(kanji.examples)
-    //kanji.examples = "fghfgh";
-    console.log(kanji.examples)
-    setKanji({
-      ...kanji
-    })
-   
     
-  }, [kanji])
+    }, [])
 
   
     return (
       <div className="app" >
-        <h1>Bar-anki</h1>
-        <p>{kanji.kanji}</p> 
-        <p>{kanji.kmeaning}</p>    
-        <p>{kanji.examples}</p>   
+       <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Button color="inherit" onClick={defaultButton}>Default</Button>
+          <Button color="inherit" onClick={studyButton}>Study</Button>
+          <Button color="inherit"onClick={searchButton}>Search </Button>
+          <Button color="inherit"onClick={modifyButton}>Modify </Button>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
 
+      {(contentType === "default") && (
+        <DefaultElement/>
+        )}
+      {(contentType === "study") && (
+        <Study/>
+      )}
+      {(contentType === "search") && (
+        <Search/>
+        )}
+      {(contentType === "modify") && (
+        <Modify/>
+        )}
         
-        &nbsp;
-        <button onClick={study}>
-          study
-        </button>
-        <button onClickCapture={again}>
-          {kanji.kmeaning}       
-        </button>
-        {/* {this.state.currentWord.id}<br/>
-        {this.state.currentWord.kname} <br/>
-        {this.state.currentWord.onyomi_ja} <br/>
- 
-        <div>
-          
-          <button onClick={this.study} >study</button>
-          <button onClick={this.close} >close</button>
-        </div> */}
-{/*         
-       <div className="flex">
-          {this.state.wantToStudy ? (
-            <ShowWord nextWord={this.state.Nextword}
-              confidenceChange={this.handleConfidenceChange}
-            
-            />
-            ) : (
-              ""
-          )}
-        </div> */}
+
       </div>
     );
   
