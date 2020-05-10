@@ -6,9 +6,10 @@ import Axios from 'axios';
 
 
 const App = () => {
-  const [kanji, setKanji] = useState('xxxxxxxxxxx');
+  const [kanji, setKanji] = useState("");
+  const [kanji2, setKanji2] = useState("");
   const study = () => {
-    console.log("study button")
+    console.log("study button");
     Axios({
           url:'/graphql',
           method: 'post',
@@ -16,74 +17,77 @@ const App = () => {
             query: `
             {showFirstRadical {
               id
+              kanji
+              ranking
               kname
+              kstroke
+              kmeaning
+              kgrade
+              kunyomi_ja
+              kunyomi
               onyomi_ja
+              onyomi
+              examples
+              radical
+              rad_order
+              rad_stroke:
+              rad_name_ja
+              rad_name
+              rad_meaning:
+              rad_position_ja
+              rad_position
             }}
             `
           }
         })
         .then((result) => {
-          console.log(result.data.data.showFirstRadical[0]);
-          setKanji(result.data.data.showFirstRadical[0].onyomi_ja);
+          //console.log(result.data.data.showFirstRadical[0]);
+          setKanji(result.data.data.showFirstRadical[0]);
           //this.setState({currentWord: result.data.data.showFirstRadical[0]});
           //console.log("state", this.state.currentWord);
           console.log(kanji);
-        });
-        
+          //console.log(JSON.parse(result.data.data.showFirstRadical[0].examples));
+          //kanji.examples =  JSON.parse(result.data.data.showFirstRadical[0].examples);
+        })    
+           
   }
 
+  const again = () => {
+    
+    kanji.kmeaning = "new word";
+    console.log(kanji);
+  }
 
-  // study = () => {
-  //   console.log("study button clicked");
-  //   console.log(this.state.currentWord);
-  // }
-  
-  // lowestRanking = () => {
-  //   console.log("entredfg");
-  //   const rankings = [];
-  //   this.state.allWords.map( (x) =>{
-  //     if (typeof x === "number") {
-  //     rankings.push(x.ranking)}
-  //   });
-  //   console.log("RANKNGS", rankings);
-  //   const minimum = Math.min(rankings);
-  //   let brake = 0;
-  //   this.state.allWords.map( (x) =>{
-  //     if (x.ranking === minimum && brake === 0) {
-  //       brake++;
-  //       this.setState({ Nextword: x});
-  //       console.log(this.state.Nextword);
-  //     }
-  //   });
-  //   console.log(JSON.stringify(rankings));
-  // }
-
-  // close = () => {
-  //   console.log("close button clicked");
-  //   console.log(this.state.currentWord);
-  //   this.forceUpdate();
-  // }
-
-  // handleConfidenceChange = (e) => {
-  //   const newRanking = this.state.NextwordIndex + e;
-  //   //console.log(e.target.value);
-  //   const index = this.state.NextwordIndex;
-  //   this.state.allWords[index].ranking += e;
-  //   this.lowestRanking();
-
-
-  // }
+  useEffect( () => {
+    console.log("Use effect - kanji");
+    if (kanji === "") {return} 
+    console.log(kanji.examples);
+    //kanji.examples = JSON.parse(kanji.examples);
+    console.log(kanji.examples)
+    //kanji.examples = "fghfgh";
+    console.log(kanji.examples)
+    setKanji({
+      ...kanji
+    })
+   
+    
+  }, [kanji])
 
   
     return (
       <div className="app" >
         <h1>Bar-anki</h1>
-        &nbsp;
-        {kanji}
+        <p>{kanji.kanji}</p> 
+        <p>{kanji.kmeaning}</p>    
+        <p>{kanji.examples}</p>   
+
+        
         &nbsp;
         <button onClick={study}>
           study
-
+        </button>
+        <button onClickCapture={again}>
+          {kanji.kmeaning}       
         </button>
         {/* {this.state.currentWord.id}<br/>
         {this.state.currentWord.kname} <br/>
