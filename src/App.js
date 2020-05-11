@@ -10,10 +10,11 @@ import DefaultElement from "./components/default";
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+//import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Settings from './components/settings';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,12 +45,15 @@ const App = () => {
   const searchButton = () => {
     console.log("searchButton");
     setContentType("search");
-
   }
   const modifyButton = () => {
     console.log("modifyButton");
-    setContentType("modify");
+    setContentType("modify"); 
+  }
 
+  const settingsButton = () => {
+    console.log("settingsButton");
+    setContentType("settings")
   }
 
   useEffect( () => {
@@ -61,7 +65,8 @@ const App = () => {
       <div className="app" >
        <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
+          onClick={settingsButton}>
             <MenuIcon />
           </IconButton>
           <Button color="inherit" onClick={defaultButton}>Default</Button>
@@ -74,17 +79,22 @@ const App = () => {
 
       {(contentType === "default") && (
         <DefaultElement/>
-        )}
+      )}
       {(contentType === "study") && (
         <Study/>
       )}
       {(contentType === "search") && (
         <Search/>
-        )}
+      )}
       {(contentType === "modify") && (
         <Modify/>
-        )}
-        
+      )}
+      {(contentType === "modify") && (
+        <Modify/>
+      )}
+      {(contentType === "settings") && (
+        <Settings/>
+      )}
 
       </div>
     );
