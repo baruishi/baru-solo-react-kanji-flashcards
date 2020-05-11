@@ -25,6 +25,10 @@ const useStyles = makeStyles({
   },
 });
 
+const nextButton = () => {
+  console.log("Next button");
+}
+
 
 const Study = () => {
   const classes = useStyles();
@@ -102,8 +106,7 @@ const Study = () => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={nextButton}>next </Button>
       </CardActions>
     </Card>
 
