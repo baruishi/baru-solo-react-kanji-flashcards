@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     minWidth: 230,
+    maxWidth: 600,
   },
   bullet: {
     display: 'inline-block',
@@ -25,12 +26,29 @@ const useStyles = makeStyles({
   },
 });
 
-const nextButton = () => {
-  console.log("Next button");
-}
 
 
 const Study = () => {
+  const finishButton = () => {
+    console.log("Next button");
+  }
+
+  const con0 = () => {
+    console.log("con0 button");
+  }
+  const con25 = () => {
+    console.log("con25 button");
+  }
+  const con50 = () => {
+    console.log("con50 button");
+  }
+  const con75 = () => {
+    console.log("con75 button");
+  }
+  const con100 = () => {
+    console.log("con100 button");
+    console.log(kanji.examples);
+  }
   const classes = useStyles();
   
   const [kanji, setKanji] = useState("");
@@ -68,21 +86,60 @@ const Study = () => {
       }
     })
     .then((result) => {
-      setKanji(result.data.data.showFirstRadical[0]);
-      setKanji({
+      let temp = {
         ...result.data.data.showFirstRadical[0],
         examples: JSON.parse(result.data.data.showFirstRadical[0].examples)
-      })
-      console.log(kanji);
+      }
+      //setKanji(result.data.data.showFirstRadical[0]);
+      console.log(temp);
+      
+      // setKanji({
+      //   ...result.data.data.showFirstRadical[0],
+      //   examples: JSON.parse(result.data.data.showFirstRadical[0].examples)
+      // })
+      setKanji(temp);
+      //console.log(result.data.data.showFirstRadical[0])
     }) 
     
     }, [])
+
+  const eachExapmles = () => {
+    console.log("STARTING");
+    let result, newString = "";
+
+    if (kanji.examples) {
+      console.log("if");
+      kanji.examples.forEach( (x) => {
+        console.log(x);
+        newString = 
+          `<Typography variant="h5" component="h2">
+           ${x}
+          </Typography>
+          `;
+        console.log(newString);
+        result += newString;
+    })};
+    console.log(result)
+    result.replace("h5","");
+    console.log(result)
+
+    return result;
+
+
+    // if (kanji.examples) {  
+    // return (
+    //   <Typography variant="h5" component="h2">
+    //       {kanji.examples}
+    //     </Typography>
+    // )}
+    
+    }
+    
+
+    
   return (
     <div>
       study element
-        <p>{kanji.kanji}</p> 
-        <p>{kanji.kmeaning}</p>    
-        <p>{kanji && kanji.examples[1]}</p>   
         &nbsp;
 
         <Card className={classes.root}>
@@ -91,22 +148,29 @@ const Study = () => {
          
         </Typography>
         <Typography variant="h5" component="h2">
-        {kanji.kanji}
+          {kanji.kanji}
         </Typography>
         <Typography variant="h5" component="h2">
-        {kanji.kmeaning}
+          {kanji.kmeaning}
         </Typography>
+        <Typography variant="h5" component="h2">
+          {kanji.examples && eachExapmles()}
+        </Typography>
+        {/*  */}
         <Typography className={classes.pos} color="textSecondary">
           
         </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
+        
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={nextButton}>next </Button>
+        <Button size="small" onClick={con0}>con 0 </Button>
+        <Button size="small" onClick={con25}>con 25 </Button>
+        <Button size="small" onClick={con50}>con 50 </Button>
+        <Button size="small" onClick={con75}>con 75 </Button>
+        <Button size="small" onClick={con100}>con 100 </Button>
+      </CardActions>
+      <CardActions>
+        <Button size="small" onClick={finishButton}>Finish </Button>
       </CardActions>
     </Card>
 
@@ -120,4 +184,7 @@ export default Study
 matrial ui
 https://material-ui.com/components/cards/
 simple card
+
+TODO] figure out why strinng at line 122 has undefined at the beggining
 */
+
