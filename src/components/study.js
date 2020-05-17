@@ -36,23 +36,37 @@ const Study = () => {
 
   const con0 = () => {
     console.log("con0 button");
+    setAswer(true);
   }
   const con25 = () => {
     console.log("con25 button");
+    setAswer(true);
   }
   const con50 = () => {
-    console.log("con50 button");
+    console.log("con50 button");    
+    setAswer(true);
   }
   const con75 = () => {
-    console.log("con75 button");
+    console.log("con75 button");    
+    setAswer(true);
   }
   const con100 = () => {
-    console.log("con100 button");
-    console.log(kanji.examples);
+    console.log("con100 button");    
+    setAswer(true);
   }
+
+  const wrongAnswer = () => {
+    console.log("wrongAnswe button");
+  }
+
+  const correctAnswer = () => {
+    console.log("correctAnswe button");
+  }
+
+
   const classes = useStyles();
-  
   const [kanji, setKanji] = useState("");
+  const [aswered, setAswer] = useState(false);
 
   useEffect( () => {
     console.log("use eff")
@@ -111,17 +125,17 @@ const Study = () => {
         <Card className={classes.root}>
           <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
-            
-            </Typography>
-            <Typography variant="h3" component="h2" align="center">
-              {kanji.kanji}
             </Typography>
             <Typography variant="h4" component="h2" align="center">
               {kanji.kmeaning}
             </Typography>
+            <Typography variant="h3" component="h1" align="center">
+              {aswered && kanji.kanji}
+            </Typography>
+         
             &nbsp;
             {/* {dynamic rendering} */}
-            {kanji && kanji.examples.map( (example) => {
+            {aswered && kanji.examples.map( (example) => {
               return (
               <Typography  variant="h6" component="h2" align="center">
                 {example}
@@ -135,15 +149,19 @@ const Study = () => {
             </Typography>
         
       </CardContent>
+      {!aswered && (<CardActions classes={{root: classes.root}} >
+        <Button size="small" variant="contained" onClick={con0}>con 0 </Button>
+        <Button size="small" variant="contained" onClick={con25}>con 25 </Button>
+        <Button size="small" variant="contained" onClick={con50}>con 50 </Button>
+        <Button size="small" variant="contained" onClick={con75}>con 75 </Button>
+        <Button size="small" variant="contained" onClick={con100}>con 100 </Button>
+      </CardActions>)}
+      {aswered && (<CardActions classes={{root: classes.root}} >
+        <Button size="medium" variant="contained" color="secondary" onClick={wrongAnswer}>wrong </Button>
+        <Button size="medium" variant="contained" color="primary" onClick={correctAnswer}>correct </Button>        
+      </CardActions>)}
       <CardActions classes={{root: classes.root}} >
-        <Button size="small" onClick={con0}>con 0 </Button>
-        <Button size="small" onClick={con25}>con 25 </Button>
-        <Button size="small" onClick={con50}>con 50 </Button>
-        <Button size="small" onClick={con75}>con 75 </Button>
-        <Button size="small" onClick={con100}>con 100 </Button>
-      </CardActions>
-      <CardActions classes={{root: classes.root}} >
-        <Button size="medium" onClick={finishButton}>Finish </Button>
+        <Button size="medium" variant="contained" onClick={finishButton}>Finish </Button>
       </CardActions>
     </Card>
 
