@@ -103,63 +103,42 @@ const Study = () => {
     
     }, [])
 
-  const eachExapmles = () => {
-    console.log("STARTING");
-    let result, newString = "";
-
-    if (kanji.examples) {
-      console.log("if");
-      kanji.examples.forEach( (x) => {
-        console.log(x);
-        newString = 
-          `<Typography variant="h5" component="h2">
-           ${x}
-          </Typography>
-          `;
-        console.log(newString);
-        result += newString;
-    })};
-    console.log(result)
-    result.replace("h5","");
-    console.log(result)
-
-    return result;
+ 
+  
 
 
-    // if (kanji.examples) {  
-    // return (
-    //   <Typography variant="h5" component="h2">
-    //       {kanji.examples}
-    //     </Typography>
-    // )}
-    
-    }
-    
+ 
 
-    
   return (
     <div>
       study element
         &nbsp;
 
         <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-         
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {kanji.kanji}
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {kanji.kmeaning}
-        </Typography>
-        <Typography variant="h5" component="h2">
-          {kanji.examples && eachExapmles()}
-        </Typography>
-        {/*  */}
-        <Typography className={classes.pos} color="textSecondary">
-          
-        </Typography>
+          <CardContent>
+            <Typography className={classes.title} color="textSecondary" gutterBottom>
+            
+            </Typography>
+            <Typography variant="h5" component="h2">
+              {kanji.kanji}
+            </Typography>
+            <Typography variant="h5" component="h2">
+              {kanji.kmeaning}
+            </Typography>
+            &nbsp;
+            {/* {dynamic rendering} */}
+            {kanji && kanji.examples.map( (example) => {
+              return (
+              <Typography variant="h5" component="h2">
+                {example}
+              </Typography>)
+            })  }
+            
+
+
+            <Typography className={classes.pos} color="textSecondary">
+              
+            </Typography>
         
       </CardContent>
       <CardActions>
@@ -185,6 +164,6 @@ matrial ui
 https://material-ui.com/components/cards/
 simple card
 
-TODO] figure out why strinng at line 122 has undefined at the beggining
+TODO: why string from 134 doesnt change into elements
 */
 
