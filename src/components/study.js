@@ -12,6 +12,7 @@ const useStyles = makeStyles({
   root: {
     minWidth: 230,
     maxWidth: 600,
+    justifyContent: 'center',
   },
   bullet: {
     display: 'inline-block',
@@ -90,15 +91,8 @@ const Study = () => {
         ...result.data.data.showFirstRadical[0],
         examples: JSON.parse(result.data.data.showFirstRadical[0].examples)
       }
-      //setKanji(result.data.data.showFirstRadical[0]);
       console.log(temp);
-      
-      // setKanji({
-      //   ...result.data.data.showFirstRadical[0],
-      //   examples: JSON.parse(result.data.data.showFirstRadical[0].examples)
-      // })
       setKanji(temp);
-      //console.log(result.data.data.showFirstRadical[0])
     }) 
     
     }, [])
@@ -119,17 +113,17 @@ const Study = () => {
             <Typography className={classes.title} color="textSecondary" gutterBottom>
             
             </Typography>
-            <Typography variant="h5" component="h2">
+            <Typography variant="h3" component="h2" align="center">
               {kanji.kanji}
             </Typography>
-            <Typography variant="h5" component="h2">
+            <Typography variant="h4" component="h2" align="center">
               {kanji.kmeaning}
             </Typography>
             &nbsp;
             {/* {dynamic rendering} */}
             {kanji && kanji.examples.map( (example) => {
               return (
-              <Typography variant="h5" component="h2">
+              <Typography  variant="h6" component="h2" align="center">
                 {example}
               </Typography>)
             })  }
@@ -141,15 +135,15 @@ const Study = () => {
             </Typography>
         
       </CardContent>
-      <CardActions>
+      <CardActions classes={{root: classes.root}} >
         <Button size="small" onClick={con0}>con 0 </Button>
         <Button size="small" onClick={con25}>con 25 </Button>
         <Button size="small" onClick={con50}>con 50 </Button>
         <Button size="small" onClick={con75}>con 75 </Button>
         <Button size="small" onClick={con100}>con 100 </Button>
       </CardActions>
-      <CardActions>
-        <Button size="small" onClick={finishButton}>Finish </Button>
+      <CardActions classes={{root: classes.root}} >
+        <Button size="medium" onClick={finishButton}>Finish </Button>
       </CardActions>
     </Card>
 
