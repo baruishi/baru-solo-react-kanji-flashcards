@@ -8,6 +8,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+let kanjiID = 10;
+
+
 const useStyles = makeStyles({
   root: {
     minWidth: 230,
@@ -30,43 +33,102 @@ const useStyles = makeStyles({
 
 
 const Study = () => {
+  const classes = useStyles();
+  const [kanji, setKanji] = useState("");
+  const [aswered, setAswer] = useState(false);
+  const [confidence, setConfidence] = useState(0);
+
+
   const finishButton = () => {
     console.log("Next button");
   }
 
   const con0 = () => {
     console.log("con0 button");
+    setConfidence(0);
     setAswer(true);
   }
   const con25 = () => {
     console.log("con25 button");
+    setConfidence(1);
     setAswer(true);
   }
   const con50 = () => {
     console.log("con50 button");    
+    setConfidence(2);
     setAswer(true);
   }
   const con75 = () => {
     console.log("con75 button");    
+    setConfidence(3);
     setAswer(true);
   }
   const con100 = () => {
-    console.log("con100 button");    
+    console.log("con100 button");  
+    setConfidence(4);  
     setAswer(true);
   }
 
   const wrongAnswer = () => {
     console.log("wrongAnswe button");
+    kanjiID++;
+    nextKanji("wrongAnswer");
+    setAswer(false);
   }
 
   const correctAnswer = () => {
     console.log("correctAnswe button");
+    kanjiID++;
+    //console.log({kanjiID});
+    nextKanji("correctAnswer");
+    setAswer(false);
+  }
+
+  const nextKanji = (origin) => {
+    console.log(`next kanji from ${origin} with kanjiID ${kanjiID}`);
+    Axios({
+      url:'/graphql',
+      method: 'post',
+      data: {
+        query: `
+        {showSpecificRadical(radicalId: "${kanjiID}") {
+          id
+          kanji
+          ranking
+          kname
+          kstroke
+          kmeaning
+          kgrade
+          kunyomi_ja
+          kunyomi
+          onyomi_ja
+          onyomi
+          examples
+          radical
+          rad_order
+          rad_stroke:
+          rad_name_ja
+          rad_name
+          rad_meaning:
+          rad_position_ja
+          rad_position
+        }}
+        `
+      }
+    })
+    .then((result) => {
+      console.log(result);
+      let temp = {
+        ...result.data.data.showSpecificRadical[0],
+        examples: JSON.parse(result.data.data.showSpecificRadical[0].examples)
+      }
+      console.log(temp);
+      setKanji(temp);
+    }) 
   }
 
 
-  const classes = useStyles();
-  const [kanji, setKanji] = useState("");
-  const [aswered, setAswer] = useState(false);
+
 
   useEffect( () => {
     console.log("use eff")

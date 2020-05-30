@@ -69,7 +69,7 @@ const schema = buildSchema(`
     
   }
   type Mutation {
-  updateRankingby(kmeaning: String!, ranking: String!): String!
+    updateRankingById(radicalId: String!, ranking: String!): [radicals]
   }
 `);
 
@@ -92,8 +92,7 @@ const root = {
         return radicals;
       });
   },
-  showSpecificRadical: (input) => {
-    
+  showSpecificRadical: (input) => {    
     radicalId = `${input.radicalId}`;
     return knex
       .select("*")
@@ -103,6 +102,22 @@ const root = {
         return radicals;
       });
   },
+  updateRankingById: (input) => {
+    const selectedKanji = input.radicalId;
+    const newRanking = input.ranking;
+    console.log({selectedKanji, newRanking});
+    return knex(`radicals`)
+      .select("*")
+      .from("radicals")
+      .where({ id: selectedKanji })
+      .update({ ranking: newRanking })
+      .then(radicals => {
+        return radicals;
+      });
+      // .then(() => {
+      //   return `${selectedKanji} updated to ${newRanking}`;
+      // });
+  },
 
   withRanking: () => {
     return knex
@@ -111,18 +126,6 @@ const root = {
       .whereNot('ranking', "0")
       .then(radicals => {
         return radicals;
-      });
-  },
-
-
-  updateRankingby: input => {
-    const selectedRadical = input.kmeaning;
-    const newRanking = input.ranking;
-    return knex(`radicals`)
-      .where({ kmeaning: selectedRadical })
-      .update({ ranking: newRanking })
-      .then(() => {
-        return `${selectedRadical} updated to ${newRanking}`;
       });
   }
 };
