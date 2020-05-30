@@ -44,36 +44,40 @@ const Study = () => {
   }
 
   const con0 = () => {
+    //for zero confidence, there should not be WRONG/CORRECT but something else
     console.log("con0 button");
-    setConfidence(0);
+    setConfidence(2);
     setAswer(true);
   }
   const con25 = () => {
     console.log("con25 button");
-    setConfidence(1);
+    setConfidence(3);
     setAswer(true);
   }
   const con50 = () => {
     console.log("con50 button");    
-    setConfidence(2);
+    setConfidence(4);
     setAswer(true);
   }
   const con75 = () => {
     console.log("con75 button");    
-    setConfidence(3);
+    setConfidence(5);
     setAswer(true);
   }
   const con100 = () => {
     console.log("con100 button");  
-    setConfidence(4);  
+    setConfidence(6);  
     setAswer(true);
   }
 
   const wrongAnswer = () => {
+    //for wrong, the ranking should still increase, just by a limited number
     console.log("wrongAnswe button");
     kanjiID++;
     nextKanji("wrongAnswer");
     setAswer(false);
+    updateRanking(1, kanji.id);
+
   }
 
   const correctAnswer = () => {
@@ -82,6 +86,22 @@ const Study = () => {
     //console.log({kanjiID});
     nextKanji("correctAnswer");
     setAswer(false);
+    updateRanking(confidence, kanji.id);
+  }
+
+  const updateRanking = (addedNumber, kanjiID) => {
+    const newRanking = addedNumber + parseInt(kanji.ranking, 10);
+    Axios({
+      url: `graphql`,
+      method: 'post',
+      data: {
+        query: `
+        mutation {updateRankingById(radicalId: "${kanjiID}", ranking: "${newRanking}") 
+        }`
+      }
+    })
+    .then()
+    .catch()
   }
 
   const nextKanji = (origin) => {
@@ -193,6 +213,8 @@ const Study = () => {
             </Typography>
             <Typography variant="h3" component="h1" align="center">
               {aswered && kanji.kanji}
+              {aswered && kanji.id}
+
             </Typography>
          
             &nbsp;
@@ -238,6 +260,9 @@ matrial ui
 https://material-ui.com/components/cards/
 simple card
 
-TODO: why string from 134 doesnt change into elements
+FINISHED AT: added mutation query to update the ranking. Works well.
+NEXT: chenge the way the kanji are choosen to take the minimum value. If many have minimum values, then choose the first one from the list
+
+TODO: 
 */
 

@@ -69,7 +69,7 @@ const schema = buildSchema(`
     
   }
   type Mutation {
-    updateRankingById(radicalId: String!, ranking: String!): [radicals]
+    updateRankingById(radicalId: String!, ranking: String!): String!
   }
 `);
 
@@ -111,9 +111,9 @@ const root = {
       .from("radicals")
       .where({ id: selectedKanji })
       .update({ ranking: newRanking })
-      .then(radicals => {
-        return radicals;
-      });
+      // .then(radicals => {
+      //   return radicals;
+      // });
       // .then(() => {
       //   return `${selectedKanji} updated to ${newRanking}`;
       // });
