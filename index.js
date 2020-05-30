@@ -64,7 +64,8 @@ const schema = buildSchema(`
   type Query {
     radicals: [radicals],
     withRanking: [radicals],
-    showFirstRadical: [radicals]
+    showFirstRadical: [radicals],
+    showSpecificRadical(radicalId: String!): [radicals]
     
   }
   type Mutation {
@@ -83,6 +84,17 @@ const root = {
   },
   showFirstRadical: () => {
     radicalId = "1";
+    return knex
+      .select("*")
+      .from("radicals")
+      .where( {id: radicalId})
+      .then(radicals => {
+        return radicals;
+      });
+  },
+  showSpecificRadical: (input) => {
+    
+    radicalId = `${input.radicalId}`;
     return knex
       .select("*")
       .from("radicals")
