@@ -65,7 +65,7 @@ const schema = buildSchema(`
     radicals: [radicals],
     showFirstRadical: [radicals],
     showSpecificRadical(radicalId: String!): [radicals],
-    minimumRanking: [radicals]
+    minimumRanking: oneRadical
     
   }
   type Mutation {
@@ -103,9 +103,7 @@ const root = {
       });
   },
   minimumRanking: () => {
-    let result;
-    let something = "some";
-    let minimumRanking
+    let minimumRanking;
 
     async function asyncCall() {
       minimumRanking = await knex("radicals")
@@ -117,21 +115,18 @@ const root = {
           })
           return Math.min(...rankingArr);
         });
-      //console.log({something, minimumRanking});
+      minimumRanking = minimumRanking.toString();
       return minimumRanking;
     }
-
     
-
-    //console.log({minimumRanking});
-
-
-    return knex
-    .select("*")
-    .from("radicals")
-    .where( {ranking: minimumRanking})
-    .then(radicals => {
-      return radicals;
+    return asyncCall().then( (result) => {
+        return knex
+        .select("*")
+        .from("radicals")
+        .where( {ranking: result})
+        .then(radicals => {
+          return radicals[0];
+        });
     });
   },
   updateRankingById: (input) => {
