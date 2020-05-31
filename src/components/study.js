@@ -40,38 +40,36 @@ const Study = () => {
 
 
   const finishButton = () => {
-    console.log("Next button");
+    console.log("Finish button");
   }
 
   const con0 = () => {
-    //for zero confidence, there should not be WRONG/CORRECT but something else
     console.log("con0 button");
-    setConfidence(2);
+    setConfidence(1);
     setAswer(true);
   }
   const con25 = () => {
     console.log("con25 button");
-    setConfidence(3);
+    setConfidence(2);
     setAswer(true);
   }
   const con50 = () => {
     console.log("con50 button");    
-    setConfidence(4);
+    setConfidence(3);
     setAswer(true);
   }
   const con75 = () => {
     console.log("con75 button");    
-    setConfidence(5);
+    setConfidence(4);
     setAswer(true);
   }
   const con100 = () => {
     console.log("con100 button");  
-    setConfidence(6);  
+    setConfidence(5);  
     setAswer(true);
   }
 
   const wrongAnswer = () => {
-    //for wrong, the ranking should still increase, just by a limited number
     console.log("wrongAnswe button");
     kanjiID++;
     nextKanji("wrongAnswer");
@@ -111,36 +109,24 @@ const Study = () => {
       method: 'post',
       data: {
         query: `
-        {showSpecificRadical(radicalId: "${kanjiID}") {
-          id
+        {minimumRanking {
           kanji
-          ranking
-          kname
-          kstroke
           kmeaning
-          kgrade
-          kunyomi_ja
-          kunyomi
-          onyomi_ja
+          id
           onyomi
+          kname
+          onyomi_ja
+          ranking
           examples
-          radical
-          rad_order
-          rad_stroke:
-          rad_name_ja
-          rad_name
-          rad_meaning:
-          rad_position_ja
-          rad_position
-        }}
+         }}
         `
       }
     })
     .then((result) => {
-      console.log(result);
+      console.log(result.data.data.minimumRanking);
       let temp = {
-        ...result.data.data.showSpecificRadical[0],
-        examples: JSON.parse(result.data.data.showSpecificRadical[0].examples)
+        ...result.data.data.minimumRanking,
+        examples: JSON.parse(result.data.data.minimumRanking.examples)
       }
       console.log(temp);
       setKanji(temp);
@@ -157,35 +143,24 @@ const Study = () => {
       method: 'post',
       data: {
         query: `
-        {showFirstRadical {
-          id
+        {minimumRanking {
           kanji
-          ranking
-          kname
-          kstroke
           kmeaning
-          kgrade
-          kunyomi_ja
-          kunyomi
-          onyomi_ja
+          id
           onyomi
+          kname
+          onyomi_ja
+          ranking
           examples
-          radical
-          rad_order
-          rad_stroke:
-          rad_name_ja
-          rad_name
-          rad_meaning:
-          rad_position_ja
-          rad_position
-        }}
+         }}
         `
       }
     })
     .then((result) => {
+      console.log(result.data.data.minimumRanking);
       let temp = {
-        ...result.data.data.showFirstRadical[0],
-        examples: JSON.parse(result.data.data.showFirstRadical[0].examples)
+        ...result.data.data.minimumRanking,
+        examples: JSON.parse(result.data.data.minimumRanking.examples)
       }
       console.log(temp);
       setKanji(temp);
@@ -208,13 +183,17 @@ const Study = () => {
           <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
             </Typography>
-            <Typography variant="h4" component="h2" align="center">
+            <Typography variant="h3" component="h1" align="center">
               {kanji.kmeaning}
             </Typography>
-            <Typography variant="h3" component="h1" align="center">
+            <Typography variant="h4" component="h2" align="center">
               {aswered && kanji.kanji}
+            </Typography>
+            <Typography variant="h4" component="h2" align="center">
               {aswered && kanji.id}
-
+            </Typography>
+            <Typography variant="h4" component="h2" align="center">
+              {aswered && kanji.onyomi}
             </Typography>
          
             &nbsp;
@@ -260,8 +239,9 @@ matrial ui
 https://material-ui.com/components/cards/
 simple card
 
-FINISHED AT: added mutation query to update the ranking. Works well.
-NEXT: chenge the way the kanji are choosen to take the minimum value. If many have minimum values, then choose the first one from the list
+FINISHED AT: only minimal ranking kanhi shows up and ranking is updated
+NEXT: study/finish button usable. do not know yet what funcion it should serve. 
+make new endpoint for searching by name. that will require handling errors if there is no such word.
 
 TODO: 
 */

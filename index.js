@@ -103,6 +103,7 @@ const root = {
       });
   },
   minimumRanking: () => {
+    //returns first kanji with minimum ranking
     let minimumRanking;
 
     async function asyncCall() {
@@ -132,7 +133,7 @@ const root = {
   updateRankingById: (input) => {
     const selectedKanji = input.radicalId;
     const newRanking = input.ranking;
-    console.log({selectedKanji, newRanking});
+    //console.log({selectedKanji, newRanking});
     return knex(`radicals`)
       .select("*")
       .from("radicals")

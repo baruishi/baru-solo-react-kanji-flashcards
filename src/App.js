@@ -3,6 +3,8 @@ import './App.css';
 import Study from "./components/study";
 import Search from "./components/search";
 import Modify from "./components/modify";
+import Login from "./components/login";
+
 import DefaultElement from "./components/default";
 
 
@@ -50,6 +52,10 @@ const App = () => {
     console.log("modifyButton");
     setContentType("modify"); 
   }
+  const loginButton = () => {
+    console.log("loginButton");
+    setContentType("login"); 
+  }
 
   const settingsButton = () => {
     console.log("settingsButton");
@@ -71,9 +77,9 @@ const App = () => {
           </IconButton>
           <Button color="inherit" onClick={defaultButton}>Default</Button>
           <Button color="inherit" onClick={studyButton}>Study</Button>
-          <Button color="inherit"onClick={searchButton}>Search </Button>
-          <Button color="inherit"onClick={modifyButton}>Modify </Button>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" onClick={searchButton}>Search </Button>
+          <Button color="inherit" onClick={modifyButton}>Modify </Button>
+          <Button color="inherit" onClick={loginButton}>Login</Button>
         </Toolbar>
       </AppBar>
 
@@ -89,8 +95,8 @@ const App = () => {
       {(contentType === "modify") && (
         <Modify/>
       )}
-      {(contentType === "modify") && (
-        <Modify/>
+      {(contentType === "login") && (
+        <Login/>
       )}
       {(contentType === "settings") && (
         <Settings/>
