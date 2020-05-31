@@ -63,9 +63,9 @@ const schema = buildSchema(`
 
   type Query {
     radicals: [radicals],
-    withRanking: [radicals],
     showFirstRadical: [radicals],
-    showSpecificRadical(radicalId: String!): [radicals]
+    showSpecificRadical(radicalId: String!): [radicals],
+    minimumRanking: [radicals]
     
   }
   type Mutation {
@@ -102,6 +102,38 @@ const root = {
         return radicals;
       });
   },
+  minimumRanking: () => {
+    let result;
+    let something = "some";
+    let minimumRanking
+
+    async function asyncCall() {
+      minimumRanking = await knex("radicals")
+        .select("*")
+        .then(radicals => {
+          let rankingArr = []
+          radicals.map((obj) => {
+            rankingArr.push(obj.ranking);
+          })
+          return Math.min(...rankingArr);
+        });
+      //console.log({something, minimumRanking});
+      return minimumRanking;
+    }
+
+    
+
+    //console.log({minimumRanking});
+
+
+    return knex
+    .select("*")
+    .from("radicals")
+    .where( {ranking: minimumRanking})
+    .then(radicals => {
+      return radicals;
+    });
+  },
   updateRankingById: (input) => {
     const selectedKanji = input.radicalId;
     const newRanking = input.ranking;
@@ -111,22 +143,9 @@ const root = {
       .from("radicals")
       .where({ id: selectedKanji })
       .update({ ranking: newRanking })
-      // .then(radicals => {
-      //   return radicals;
-      // });
       // .then(() => {
       //   return `${selectedKanji} updated to ${newRanking}`;
       // });
-  },
-
-  withRanking: () => {
-    return knex
-      .select("*")
-      .from("radicals")
-      .whereNot('ranking', "0")
-      .then(radicals => {
-        return radicals;
-      });
   }
 };
 
