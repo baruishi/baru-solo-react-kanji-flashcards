@@ -8,6 +8,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+
+let englishWord = ""
 
 const useStyles = makeStyles({
   root: {
@@ -30,7 +33,7 @@ const useStyles = makeStyles({
 
 
 const Search = () => {
-  let englishWord = "";
+  ;
   const classes = useStyles();
   const [kanji, setKanji] = useState({});
   const [localContext, setlocalContxt] = useState({
@@ -63,12 +66,18 @@ const Search = () => {
       }
     })
     .then((result) => {
-      console.log(result.data.data.showByName[0]);
-      let temp = {
-        ...result.data.data.showByName[0],
-        examples: JSON.parse(result.data.data.showByName[0].examples)
-      }
-      setKanji(temp);
+      console.log(typeof result);
+      console.log(result.data.data.showByName.length);
+
+      if (result.data.data.showByName.length === 0) {
+        setKanji("");
+        } else {
+        console.log(result.data.data.showByName[0]);
+        let temp = {
+          ...result.data.data.showByName[0],
+          examples: JSON.parse(result.data.data.showByName[0].examples)
+        }
+      setKanji(temp);}
     })
     .then( () => {
       console.log(kanji);
@@ -92,16 +101,17 @@ const Search = () => {
               Find Japanese word
             </Typography>
             <Typography variant="h4" component="h2" align="center">
-              <input
+              <Input
                 type="text"
-                className="form-control form-control-lg"
+                className={{root: classes.root}}
+                size="medium"
                 placeholder="English word"
                 //value={englishWord}
                 onChange={e => findKanji(e.target.value)}
                 />
-              <button size="small" variant="contained" onClick={searchApiCall}>
+              <Button size="small" variant="contained" onClick={searchApiCall}>
                 search
-              </button>
+              </Button>
             </Typography>
             {<Typography variant="h4" component="h2" align="center">
             {kanji.kmeaning}
