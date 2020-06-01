@@ -65,7 +65,8 @@ const schema = buildSchema(`
     radicals: [radicals],
     showFirstRadical: [radicals],
     showSpecificRadical(radicalId: String!): [radicals],
-    minimumRanking: oneRadical
+    minimumRanking: oneRadical,
+    showByName(kmeaning: String!): [radicals]
     
   }
   type Mutation {
@@ -129,6 +130,15 @@ const root = {
           return radicals[0];
         });
     });
+  },
+  showByName: (input) => {
+    //shows kanji by English meaning
+    return knex("radicals")
+      .select("*")
+      .where({kmeaning: input.kmeaning})
+      .then( (radicals) => {
+        return radicals
+      });
   },
   updateRankingById: (input) => {
     const selectedKanji = input.radicalId;

@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-let kanjiID = 10;
+//let kanjiID = 10; that used to be temp. check is still apply
 
 
 const useStyles = makeStyles({
@@ -71,7 +71,7 @@ const Study = () => {
 
   const wrongAnswer = () => {
     console.log("wrongAnswe button");
-    kanjiID++;
+    //kanjiID++;
     nextKanji("wrongAnswer");
     setAswer(false);
     updateRanking(1, kanji.id);
@@ -80,7 +80,7 @@ const Study = () => {
 
   const correctAnswer = () => {
     console.log("correctAnswe button");
-    kanjiID++;
+    //kanjiID++;
     //console.log({kanjiID});
     nextKanji("correctAnswer");
     setAswer(false);
@@ -103,7 +103,7 @@ const Study = () => {
   }
 
   const nextKanji = (origin) => {
-    console.log(`next kanji from ${origin} with kanjiID ${kanjiID}`);
+    //console.log(`next kanji from ${origin} with kanjiID ${kanjiID}`);
     Axios({
       url:'/graphql',
       method: 'post',
