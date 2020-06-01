@@ -45,6 +45,10 @@ const Search = () => {
   }
 
   const searchApiCall = () => {
+    setlocalContxt({
+      ...localContext,
+      apiResponse: false
+    })
     console.log("searchApiCall");
     console.log(englishWord);
     Axios({
@@ -78,13 +82,16 @@ const Search = () => {
           examples: JSON.parse(result.data.data.showByName[0].examples)
         }
       setKanji(temp);}
+      return result;
     })
-    .then( () => {
+    .then( (result) => {
       console.log(kanji);
+      console.log(result);
+      if (result.data.data.showByName.length !== 0) {
       setlocalContxt({
         ...localContext,
         apiResponse: true
-      })
+      })}
     })
 
   }
@@ -136,22 +143,15 @@ const Search = () => {
             
           </CardContent>
 
-      {/* {!aswered && (<CardActions classes={{root: classes.root}} >
-        <Button size="small" variant="contained" onClick={con0}>con 0 </Button>
-        <Button size="small" variant="contained" onClick={con25}>con 25 </Button>
-        <Button size="small" variant="contained" onClick={con50}>con 50 </Button>
-        <Button size="small" variant="contained" onClick={con75}>con 75 </Button>
-        <Button size="small" variant="contained" onClick={con100}>con 100 </Button>
-      </CardActions>)}
-      {aswered && (<CardActions classes={{root: classes.root}} >
-        <Button size="medium" variant="contained" color="secondary" onClick={wrongAnswer}>wrong </Button>
-        <Button size="medium" variant="contained" color="primary" onClick={correctAnswer}>correct </Button>        
-      </CardActions>)}
-      <CardActions classes={{root: classes.root}} >
-        <Button size="medium" variant="contained" onClick={finishButton}>Finish </Button>
-      </CardActions> */}
+      
     </Card>    </div>
   );
 }
 
 export default Search
+
+/*
+Figure out what to do when no kanji object is returned. 
+
+*/
+
